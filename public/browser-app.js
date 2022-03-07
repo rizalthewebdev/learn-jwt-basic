@@ -18,7 +18,7 @@ formDOM.addEventListener('submit', async (e) => {
     const { data } = await axios.post('/api/v1/login', { username, password })
 
     formAlertDOM.style.display = 'block'
-    formAlertDOM.textContent = data.msg
+    formAlertDOM.textContent = data.message
 
     formAlertDOM.classList.add('text-success')
     usernameInputDOM.value = ''
@@ -30,7 +30,7 @@ formDOM.addEventListener('submit', async (e) => {
     tokenDOM.classList.add('text-success')
   } catch (error) {
     formAlertDOM.style.display = 'block'
-    formAlertDOM.textContent = error.response.data.msg
+    formAlertDOM.textContent = error.response.data.message
     localStorage.removeItem('token')
     resultDOM.innerHTML = ''
     tokenDOM.textContent = 'no token present'
@@ -49,12 +49,12 @@ btnDOM.addEventListener('click', async () => {
         Authorization: `Bearer ${token}`,
       },
     })
-    resultDOM.innerHTML = `<h5>${data.msg}</h5><p>${data.secret}</p>`
+    resultDOM.innerHTML = `<h5>${data.message}</h5><p>${data.secret}</p>`
 
     data.secret
   } catch (error) {
     localStorage.removeItem('token')
-    resultDOM.innerHTML = `<p>${error.response.data.msg}</p>`
+    resultDOM.innerHTML = `<p>${error.response.data.message}</p>`
   }
 })
 
